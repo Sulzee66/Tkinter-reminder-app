@@ -1,7 +1,5 @@
 from datetime import datetime
-import json
-import os
-import time
+import time, os, json
 from plyer import notification
 
 
@@ -13,7 +11,6 @@ def send_notification(mssg):
         timeout = 10,
     )
 
-
 def count():
     with open("file.json", "r") as f:
         data = json.load(f)
@@ -24,7 +21,6 @@ def count():
     alarm_time = h + ":" + m
 
     while True:
-        os.system('cls')
         now = datetime.now()
         current_time = now.strftime("%H:%M:%S")
         parsed_time = current_time[:5]
@@ -32,12 +28,8 @@ def count():
         if parsed_time == alarm_time:
             send_notification(mssg)
             break
-        else:
-            print(current_time)
                 
-        time.sleep(1)
-
-    
+        # time.sleep(1)
 
 if __name__ == "__main__":
     count()

@@ -3,8 +3,10 @@ from base import Reminder
 from countdown import count
 import threading
 
-
 def set_alarm():
+    """
+    sets the alarm for the reminder
+    """
     hour = hour_entry.get()
     minute = minute_entry.get()
 
@@ -22,10 +24,14 @@ def set_alarm():
     count()
 
 def start_set_alarm_thread(event):
+    """
+    creates a seperate thread for the alarm
+    """
     global alarm_thread
     alarm_thread = threading.Thread(target=set_alarm)
     alarm_thread.daemon = True
     alarm_thread.start()
+
 
 # create a window
 window = tk.Tk()
@@ -71,7 +77,7 @@ message_entry = tk.Entry(window, font=('Arial 12'))
 message_entry.place(x=180, y = 205)
 
 btn = tk.Button(window, text="Confirm", height=1, width=22, borderwidth=0, font=("Fantasy", 18), command=lambda:start_set_alarm_thread(None))
-btn.configure(fg="white", bg="green")
+btn.configure(fg="white", bg="red")
 btn.place(x=50, y=300)
 
 window.mainloop()
